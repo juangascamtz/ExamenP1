@@ -1,0 +1,93 @@
+﻿@model ExamP1JG.ViewModel.quizSonucViewModel
+
+@{ ViewBag.Title = "Quiz";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-top: 80px;">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <br />
+                <div id="myProgress">
+                    <div id="myBar"></div>
+                </div>
+                <hr class="my-4">
+                <h4 class="card-title text-center">Quiz Ekranı</h4>
+
+
+                <div hidden>
+                    <span id="sure" style="font-size: 24pt; font-weight: bold;" hidden>@TempData["sayac"]</span>
+                </div>
+
+                <form method="post" id="quizSinavForm">
+
+                    <div class="form-label-group " style="border: 1px solid lightGrey;">
+
+                        @*<h4 id="soruSayac">@ViewBag.Sayac</h4>*@
+
+                        <h4>
+
+                            @(Model.Soru.pregunta)
+                        </h4>
+
+                    </div>
+                    <br />
+                    <div id="formSecenek">
+                        <div class="form-label-group secenek" style="text-align: center;">
+                            <a class="btn quizCevap" id="respuesta1" name="respuesta1">
+                                @(Model.Secenek.respuesta1)
+                            </a>
+
+                        </div>
+                        <br />
+                        <div class="form-label-group secenek" style="text-align: center;">
+                            <a class="btn quizCevap" id="respuesta2" name="respuesta2">
+                                @(Model.Secenek.respuesta2)
+
+                            </a>
+
+                        </div>
+                        <br />
+                        <div class="form-label-group secenek" style="text-align: center;">
+                            <a class="btn quizCevap" id="respuesta3" name="respuesta3">
+                                @(Model.Secenek.respuesta3)
+
+                            </a>
+
+                        </div>
+                        <br />
+                        <div class="form-label-group  secenek" style="text-align: center;">
+                            <a class="btn quizCevap" id="respuesta4" name="respuesta4">
+                                @(Model.Secenek.respuesta4)
+
+
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-label-group">
+                        <button class="btn" id="quizDogruCvp" hidden>@(Model.Secenek.correctaRsp)</button>
+                        <div class="form-label-group">
+                            <button class="btn" id="SoruUniq" hidden>@(Model.Soru.preguntaUniq)</button>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <hr class="my-4">
+
+
+                    <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit" id="btnNext" disabled>Next</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/quiz.js"></script>
+}

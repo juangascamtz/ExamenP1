@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="examenDBModelStoreContainer" CdmEntityContainer="examenDBEntities">
+    <EntitySetMapping Name="tbl_categoria">
+      <EntityTypeMapping TypeName="examenDBModel.tbl_categoria">
+        <MappingFragment StoreEntitySet="tbl_categoria">
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_genelResultados">
+      <EntityTypeMapping TypeName="examenDBModel.tbl_genelResultados">
+        <MappingFragment StoreEntitySet="tbl_genelResultados">
+          <ScalarProperty Name="examenUniq" ColumnName="examenUniq" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="quizCount" ColumnName="quizCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_opcion">
+      <EntityTypeMapping TypeName="examenDBModel.tbl_opcion">
+        <MappingFragment StoreEntitySet="tbl_opcion">
+          <ScalarProperty Name="id_Respuesta" ColumnName="id_Respuesta" />
+          <ScalarProperty Name="respuesta1" ColumnName="respuesta1" />
+          <ScalarProperty Name="respuesta2" ColumnName="respuesta2" />
+          <ScalarProperty Name="respuesta3" ColumnName="respuesta3" />
+          <ScalarProperty Name="respuesta4" ColumnName="respuesta4" />
+          <ScalarProperty Name="correctaRsp" ColumnName="correctaRsp" />
+          <ScalarProperty Name="preguntaUniq" ColumnName="preguntaUniq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_pregunta">
+      <EntityTypeMapping TypeName="examenDBModel.tbl_pregunta">
+        <MappingFragment StoreEntitySet="tbl_pregunta">
+          <ScalarProperty Name="preguntaUniq" ColumnName="preguntaUniq" />
+          <ScalarProperty Name="pregunta" ColumnName="pregunta" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_resultadoExam">
+      <EntityTypeMapping TypeName="examenDBModel.tbl_resultadoExam">
+        <MappingFragment StoreEntitySet="tbl_resultadoExam">
+          <ScalarProperty Name="id_examen" ColumnName="id_examen" />
+          <ScalarProperty Name="esCorrecto" ColumnName="esCorrecto" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="punto" ColumnName="punto" />
+          <ScalarProperty Name="historialExamen" ColumnName="historialExamen" />
+          <ScalarProperty Name="preguntaUniq" ColumnName="preguntaUniq" />
+          <ScalarProperty Name="examenUniq" ColumnName="examenUniq" />
+          <ScalarProperty Name="examenNo" ColumnName="examenNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_usuario">
+      <EntityTypeMapping TypeName="examenDBModel.tbl_usuario">
+        <MappingFragment StoreEntitySet="tbl_usuario">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

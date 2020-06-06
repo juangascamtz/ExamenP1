@@ -1,0 +1,121 @@
+﻿
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Examenes Cardiel</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
+
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+
+
+    <style>
+        #myProgress {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            width: 100%;
+            height: 30px;
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    @Html.Partial("_Navbar")
+
+    <div class="container-fluid">
+        @RenderBody()
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    @RenderSection("scripts", false)
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#sinavStart").click(function () {
+
+                $(".navbarButton").unbind("click");
+                $(".navbarButton").css("color", "lightGray");
+
+
+            });
+
+            $('#secenek').change(function () {
+
+                var dogruCevap = $("input[name='Secenek.correctaRsp']:checked").siblings(".btnCvp").val();
+                document.getElementById("correctaRsp").innerHTML = dogruCevap;
+
+            });
+
+
+            $('#sinavlar').on('change', function () {
+
+                var sinavNo_ = $('#sinavlar').val();
+                $.ajax({
+
+                    url: "/Profil/GrafikGoster_",
+                    type: 'POST',
+                    data: "&sinavNo=" + sinavNo_,
+                    success: function (gelenveri) {
+
+                    },
+                    error: function (hata) {
+
+
+                    }
+                });
+
+            });
+
+            var sayac_ = $("#sure").text();
+            var sayac = parseInt(sayac_);
+            
+            var elem = document.getElementById("myBar");
+            function bak() {
+
+                if (sayac > 0) {
+                    sayac = sayac - 1;
+                    $("#sure").text(sayac);
+                    elem.style.width = sayac + "%";
+                }
+                else {
+                    $(location).attr('href', 'Home/Home');
+          
+                }
+            }
+
+         
+        });
+    </script>
+
+
+
+</body>
+
+
+</html>
+
+

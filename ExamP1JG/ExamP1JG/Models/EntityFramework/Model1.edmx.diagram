@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5075bea2db144934b2d29e36adab0cc7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="examenDBModel.tbl_categoria" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="examenDBModel.tbl_genelResultados" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="examenDBModel.tbl_opcion" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="examenDBModel.tbl_pregunta" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="examenDBModel.tbl_resultadoExam" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="examenDBModel.tbl_usuario" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="examenDBModel.FK__tbl_pregunta__categoria__69FBBC1F" ManuallyRouted="false" />
+        <AssociationConnector Association="examenDBModel.FK__tbl_genelRes__useri__2610A626" ManuallyRouted="false" />
+        <AssociationConnector Association="examenDBModel.FK__tbl_resultadoEx__examen__28ED12D1" ManuallyRouted="false" />
+        <AssociationConnector Association="examenDBModel.FK__tbl_opcion__preguntaU__6CD828CA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

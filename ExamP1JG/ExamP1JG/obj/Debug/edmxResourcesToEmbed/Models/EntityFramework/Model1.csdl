@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="examenDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_categoria">
+    <Key>
+      <PropertyRef Name="id_categoria" />
+    </Key>
+    <Property Name="id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_pregunta" Relationship="Self.FK__tbl_pregunta__categoria__69FBBC1F" FromRole="tbl_categoria" ToRole="tbl_pregunta" />
+  </EntityType>
+  <EntityType Name="tbl_genelResultados">
+    <Key>
+      <PropertyRef Name="examenUniq" />
+    </Key>
+    <Property Name="examenUniq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="quizCount" Type="Int32" />
+    <NavigationProperty Name="tbl_usuario" Relationship="Self.FK__tbl_genelRes__useri__2610A626" FromRole="tbl_genelResultados" ToRole="tbl_usuario" />
+    <NavigationProperty Name="tbl_resultadoExam" Relationship="Self.FK__tbl_resultadoEx__examen__28ED12D1" FromRole="tbl_genelResultados" ToRole="tbl_resultadoExam" />
+  </EntityType>
+  <EntityType Name="tbl_opcion">
+    <Key>
+      <PropertyRef Name="id_Respuesta" />
+    </Key>
+    <Property Name="id_Respuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="respuesta1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="respuesta2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="respuesta3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="respuesta4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="correctaRsp" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="preguntaUniq" Type="Guid" />
+    <NavigationProperty Name="tbl_pregunta" Relationship="Self.FK__tbl_opcion__preguntaU__6CD828CA" FromRole="tbl_opcion" ToRole="tbl_pregunta" />
+  </EntityType>
+  <EntityType Name="tbl_pregunta">
+    <Key>
+      <PropertyRef Name="preguntaUniq" />
+    </Key>
+    <Property Name="preguntaUniq" Type="Guid" Nullable="false" />
+    <Property Name="pregunta" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="Int32" />
+    <Property Name="id_categoria" Type="Int32" />
+    <NavigationProperty Name="tbl_categoria" Relationship="Self.FK__tbl_pregunta__categoria__69FBBC1F" FromRole="tbl_pregunta" ToRole="tbl_categoria" />
+    <NavigationProperty Name="tbl_opcion" Relationship="Self.FK__tbl_opcion__preguntaU__6CD828CA" FromRole="tbl_pregunta" ToRole="tbl_opcion" />
+  </EntityType>
+  <EntityType Name="tbl_resultadoExam">
+    <Key>
+      <PropertyRef Name="id_examen" />
+    </Key>
+    <Property Name="id_examen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="esCorrecto" Type="Boolean" />
+    <Property Name="id_categoria" Type="Int32" />
+    <Property Name="punto" Type="Int32" />
+    <Property Name="historialExamen" Type="DateTime" Precision="3" />
+    <Property Name="preguntaUniq" Type="Guid" />
+    <Property Name="examenUniq" Type="Int32" />
+    <Property Name="examenNo" Type="Int32" />
+    <NavigationProperty Name="tbl_genelResultados" Relationship="Self.FK__tbl_resultadoEx__examen__28ED12D1" FromRole="tbl_resultadoExam" ToRole="tbl_genelResultados" />
+  </EntityType>
+  <EntityType Name="tbl_usuario">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="rol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_genelResultados" Relationship="Self.FK__tbl_genelRes__useri__2610A626" FromRole="tbl_usuario" ToRole="tbl_genelResultados" />
+  </EntityType>
+  <Association Name="FK__tbl_pregunta__categoria__69FBBC1F">
+    <End Role="tbl_categoria" Type="Self.tbl_categoria" Multiplicity="0..1" />
+    <End Role="tbl_pregunta" Type="Self.tbl_pregunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_categoria">
+        <PropertyRef Name="id_categoria" />
+      </Principal>
+      <Dependent Role="tbl_pregunta">
+        <PropertyRef Name="id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_genelRes__useri__2610A626">
+    <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="0..1" />
+    <End Role="tbl_genelResultados" Type="Self.tbl_genelResultados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_usuario">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="tbl_genelResultados">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_resultadoEx__examen__28ED12D1">
+    <End Role="tbl_genelResultados" Type="Self.tbl_genelResultados" Multiplicity="0..1" />
+    <End Role="tbl_resultadoExam" Type="Self.tbl_resultadoExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_genelResultados">
+        <PropertyRef Name="examenUniq" />
+      </Principal>
+      <Dependent Role="tbl_resultadoExam">
+        <PropertyRef Name="examenUniq" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_opcion__preguntaU__6CD828CA">
+    <End Role="tbl_pregunta" Type="Self.tbl_pregunta" Multiplicity="0..1" />
+    <End Role="tbl_opcion" Type="Self.tbl_opcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_pregunta">
+        <PropertyRef Name="preguntaUniq" />
+      </Principal>
+      <Dependent Role="tbl_opcion">
+        <PropertyRef Name="preguntaUniq" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="examenDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_categoria" EntityType="Self.tbl_categoria" />
+    <EntitySet Name="tbl_genelResultados" EntityType="Self.tbl_genelResultados" />
+    <EntitySet Name="tbl_opcion" EntityType="Self.tbl_opcion" />
+    <EntitySet Name="tbl_pregunta" EntityType="Self.tbl_pregunta" />
+    <EntitySet Name="tbl_resultadoExam" EntityType="Self.tbl_resultadoExam" />
+    <EntitySet Name="tbl_usuario" EntityType="Self.tbl_usuario" />
+    <AssociationSet Name="FK__tbl_pregunta__categoria__69FBBC1F" Association="Self.FK__tbl_pregunta__categoria__69FBBC1F">
+      <End Role="tbl_categoria" EntitySet="tbl_categoria" />
+      <End Role="tbl_pregunta" EntitySet="tbl_pregunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_genelRes__useri__2610A626" Association="Self.FK__tbl_genelRes__useri__2610A626">
+      <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+      <End Role="tbl_genelResultados" EntitySet="tbl_genelResultados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_resultadoEx__examen__28ED12D1" Association="Self.FK__tbl_resultadoEx__examen__28ED12D1">
+      <End Role="tbl_genelResultados" EntitySet="tbl_genelResultados" />
+      <End Role="tbl_resultadoExam" EntitySet="tbl_resultadoExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_opcion__preguntaU__6CD828CA" Association="Self.FK__tbl_opcion__preguntaU__6CD828CA">
+      <End Role="tbl_pregunta" EntitySet="tbl_pregunta" />
+      <End Role="tbl_opcion" EntitySet="tbl_opcion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
